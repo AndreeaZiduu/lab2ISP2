@@ -7,6 +7,8 @@ public class Main {
     static void main() {
         //ex 2.7.1
         System.out.println("ex 2.7.1");
+        System.out.println();
+
         List<Integer> x = new ArrayList();
         List<Integer> y = new ArrayList();
         List<Integer> xPlusY = new ArrayList(); //a
@@ -56,6 +58,53 @@ public class Main {
         System.out.println();
 
         //ex 2.7.2
+        List<Student> studenti = new ArrayList<>();
+        studenti.add(new Student("Popescu", "Marian", "225_3"));
+        studenti.add(new Student("Popescu", "Maria", "225_3"));
+        studenti.add(new Student("Popa", "Marian", "225_3"));
+        studenti.add(new Student("Bica", "Irina", "225_3"));
+        studenti.add(new Student("Badea", "Ion", "225_1"));
+        studenti.add(new Student("Cacoveanu", "Andreea", "225_1"));
+        studenti.add(new Student("Onofrei", "Mircea", "225_1"));
 
+        //a
+        Random rands = new Random();
+        for (Student s : studenti){
+            for (int i=0; i<5; i++){
+                s.adaugaNota(4+rands.nextInt(7));
+            }
+        }
+
+        //b1
+        Collections.sort(studenti, new ByNameAndGroupComparator());
+        System.out.println("Ordonare alfabetica dupa grupe si nume: ");
+        for (Object obj : studenti){
+            System.out.println(obj);
+        }
+
+        List <Student> integralisti = new ArrayList<>();
+        List <Student> restantieri = new ArrayList<>();
+
+        for (Student s : studenti){
+            if(s.esteIntegralist()){
+                integralisti.add(s);
+            } else {
+                restantieri.add(s);
+            }
+        }
+
+        //b2
+        Collections.sort(integralisti, new ByGradesComparator());
+        System.out.println("Integralisti ordonati desc dupa medie: ");
+        for (Object obj : integralisti){
+            System.out.println(obj);
+        }
+
+        //b3
+        Collections.sort(restantieri, new ByRestanteComparator());
+        System.out.println("Restantieri ordonati cresc dupa nr de restante: ");
+        for (Object obj : restantieri){
+            System.out.println(obj);
+        }
     }
 }

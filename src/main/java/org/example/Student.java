@@ -1,3 +1,5 @@
+package org.example;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,8 +8,9 @@ public class Student {
         private String grupa;
         private String prenume;
         private List<Integer> note;
-        public Student(String valoare, String grupa){
-            this.nume = valoare;
+        public Student(String nume, String prenume, String grupa){
+            this.nume = nume;
+            this.prenume = prenume;
             this.grupa = grupa;
             note = new ArrayList();
         }
@@ -34,6 +37,17 @@ public class Student {
                 }
             }
             return true;
+        }
+
+        public int nrRestante () {
+            int restante = 0;
+            for (int elem : note){
+                int nota = elem;
+                if (nota < 5){
+                    restante++;
+                }
+            }
+            return restante;
         }
 
         public Integer medie(){
